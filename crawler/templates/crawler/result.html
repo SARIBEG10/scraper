@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<title>Title</title>
+</head>
+<body>
+<div class="container">
+	<div class="row m-3">
+		<div class="col-md-4">
+		  <form method="POST" action="/">
+			  {% csrf_token %}
+			<input type="text" class="form-control" name="site" id="site" placeholder="Enter URI">
+
+		</div>
+		<div class="col-md-2">
+			<button type="submit" class="btn btn-primary">Scrape</button>
+		</div>
+		</form>
+		<div class="col-md-6">
+			<a class="btn btn-warning" href="/delete">Delete</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8">
+			<table class="table">
+				<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">Link</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					{% for links in data %}
+					<td>{{ links.id }}</td>
+					<td>{{ links.name }}</td>
+					<td>{{ links.address }}</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>
